@@ -1,23 +1,134 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoyuDIY Shop</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoyuDIY</title>
+  <style>
+    body {
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to right, #C7FCEE, #6AAAF8, #499AFD);
+      background-size: 200% 200%;
+      background-attachment: fixed;
+      flex-direction: column;
+      font-family: 'sans-serif';
+      margin: 0; /* Đảm bảo không có margin mặc định */
+    }
+    
+    .cart-logo {
+      max-width: 150px;
+      max-height: 150px;
+      margin-right: 10px;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .container h2 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #87CEEB;
+      padding-bottom: 15px;
+      font-family: 'sans-serif';
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        font-size: 16px; /* Giảm kích thước chữ trên thiết bị di động */
+      }
+      .container {
+        padding: 15px; /* Giảm padding trên thiết bị di động */
+      }
+      .container h2 {
+        font-size: 24px; /* Giảm kích thước tiêu đề trên thiết bị di động */
+      }
+    }
+
+    /* Các phần CSS khác giữ nguyên... */
+    /* (Giữ nguyên các phần CSS khác mà bạn đã có) */
+    
+    /* Ví dụ: */
+    .product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 25px;
+      border-radius: 15px;
+      background: #ffffff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    /* Các phần CSS khác... */
+  </style>
+  <script>
+    // Giữ nguyên mã JavaScript của bạn...
+    // (Giữ nguyên mã JavaScript mà bạn đã có)
+  </script>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbxkjnujPbcFU7g9UOskjj20yVdvS_k7A7CJBKytWDKZm8v0URCZvC3WzLbg0EEaToP2/exec"></iframe>
+  <div class="container">
+    <h2>Danh sách sản phẩm</h2>
+    
+    <div class="search-container">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Tìm kiếm sản phẩm...">
+        <button id="search-clear" class="search-clear">✕</button>
+        <div class="suggestions"></div>
+      </div>
+      <button id="search-button" class="quantity-btn" style="margin-left: 10px;">🔍</button>
+    </div>
+    
+    <div id="product-list" class="products-grid"></div>
+  </div>
+
+  <div class="cart-container">
+    <div class="cart-header">
+      <img src="https://lh3.googleusercontent.com/d/1YpR_fsdUWXh7afrYZkewpjXT2G-6TIUl" alt="Shop Logo" class="cart-logo">
+      <div class="cart-title">
+        🛒 Giỏ Hàng
+      </div>
+    </div>
+    
+    <div class="phone-input-wrapper">
+      <span>📞 SĐT Zép:</span>
+      <input type="tel" id="phone-number" class="phone-input" placeholder="Nhập số điện thoại" onblur="validatePhoneNumber()">
+    </div>
+    
+    <div id="cart-list"></div>
+ <div id="phone-error" class="error-message"></div>
+    <div id="total-price" class="total-price">Tổng giá trị giỏ hàng: 0 VND</div>
+    <button class="btn-order">Đặt hàng</button>
+  </div>
+
+  <button class="toggle-button left" onclick="hideCart()" style="color: white;">►</button>
+  <button class="toggle-button right hide" onclick="showCart()" style="color: white;">◄</button>
+
+  <div id="message-overlay" class="overlay">
+    <div class="message-content">
+      <div id="loading-spinner" class="loading-spinner"></div>
+      <div id="success-icon" class="success-icon">✓</div>
+      <div id="error-icon" class="error-icon">✕</div>
+      <div id="message-text" class="message-text">Vui lòng chờ...</div>
+    </div>
+  </div>
 </body>
 </html>
