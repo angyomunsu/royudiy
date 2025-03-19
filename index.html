@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=1.0, user-scalable=no">
     <title>RoyuDIY</title>
     <style>
         body {
@@ -13,8 +13,9 @@
         }
         iframe {
             width: 100%;
-            height: 100vh; /* Chiều cao toàn bộ màn hình */
+            height: calc(100vh - 20px); /* Giảm chiều cao để tránh thanh cuộn */
             border: none; /* Không hiển thị viền */
+            touch-action: manipulation; /* Ngăn chặn zoom khi chạm */
         }
     </style>
 </head>
