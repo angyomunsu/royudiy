@@ -8,16 +8,25 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Ngăn cuộn trang */
         }
-        iframe {
+        #content {
             width: 100%;
             height: 100vh; /* Chiếm toàn bộ chiều cao của viewport */
-            border: none; /* Không có viền */
+            overflow: auto; /* Cho phép cuộn nếu cần */
         }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbx.../exec"></iframe>
+    <div id="content"></div>
+
+    <script>
+        async function loadIndexHtml() {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbx.../exec'); // Thay thế bằng URL của bạn
+            const html = await response.text();
+            document.getElementById('content').innerHTML = html;
+        }
+
+        loadIndexHtml();
+    </script>
 </body>
 </html>
